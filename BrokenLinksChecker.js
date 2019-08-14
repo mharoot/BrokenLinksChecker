@@ -20,7 +20,7 @@ function isValidAnchor(text, href) {
         && href                         // must not be null
         && !href.includes('#')          // no hasthtags
         && !href.includes('wp-content') // no images or uploaded content
-        && !href.includes(':');         // no telephone numbers tel:818.888.8888
+        && !href.includes('tel:');         // no telephone numbers tel:818.888.8888
 }
 
 async function getPageLinks(url) {
