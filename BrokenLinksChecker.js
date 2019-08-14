@@ -1,15 +1,29 @@
 const {Builder, By, Key, until} = require('selenium-webdriver');
 const request = require('request-promise');
 _VISITED = [];
+homepageURL = 'http://caspianclients.com/akopyan/';
 
 (async function start() {
-  let homepageURL = 'http://yourhomepage.com';
   _VISITED[homepageURL] = true;
   await getPageLinks(homepageURL);
   console.log(_VISITED)
   for (let pageUrl in _VISITED) {
-    if (! _VISITED[pageUrl]) await getPageLinks(pageUrl);
+    if (! _VISITED[pageUrl]) 
+    {
+      _VISITED[pageUrl] = true;
+      await getPageLinks(pageUrl);
+    }
   }
+  console.log(_VISITED)
+  for (let pageUrl in _VISITED) {
+    if (! _VISITED[pageUrl]) 
+    {
+      _VISITED[pageUrl] = true;
+      await getPageLinks(pageUrl);
+    }
+  }
+
+
 })();
 
 
@@ -18,6 +32,7 @@ _VISITED = [];
 function isValidAnchor(text, href) {
     return text.length > 0              // has to have text
         && href                         // must not be null
+        && href.includes(homepageURL)   // must be the host url, don't want to start scraping other sites on accident
         && !href.includes('#')          // no hasthtags
         && !href.includes('wp-content') // no images or uploaded content
         && !href.includes('tel:');         // no telephone numbers tel:818.888.8888
