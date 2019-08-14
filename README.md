@@ -4,8 +4,9 @@ NODE JS Broken Links Checker crawls all your web pages checking for broken links
 ### How to Use:
 1. Give it a homepage url
 ```js
+homepageURL = 'http://google.com/';
 (async function start() {
-  let homepageURL = 'http://google.com/';
+  ...
 ```
 
 2. Install Mocha Global
