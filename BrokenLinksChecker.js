@@ -16,7 +16,11 @@ _VISITED = [];
 
 
 function isValidAnchor(text, href) {
-    return text.length > 0 && href && !href.includes('#') && !href.includes('wp-content');
+    return text.length > 0              // has to have text
+        && href                         // must not be null
+        && !href.includes('#')          // no hasthtags
+        && !href.includes('wp-content') // no images or uploaded content
+        && !href.includes(':');         // no telephone numbers tel:818.888.8888
 }
 
 async function getPageLinks(url) {
