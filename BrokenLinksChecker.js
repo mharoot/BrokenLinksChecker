@@ -56,7 +56,8 @@ function isValidAnchor(text, href) {
         && !href.includes('#')          // no hasthtags
         && !href.includes('wp-content') // no images or uploaded content
         && !href.includes('tel:')       // no telephone numbers tel:818.888.8888
-        && !href.includes('mailto:');   // no emails 
+        && !href.includes('mailto:'),   // no emails 
+        && !href.includes('=http');     // prevents navigating to other webpages like LinkedIn
 }
 
 async function getPageLinks(url) {
