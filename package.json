@@ -1,0 +1,33 @@
+{
+  "name": "broken-links-checker",
+  "version": "1.0.0",
+  "description": "Checks all pages of a website for broken links",
+  "main": "BrokenLinksChecker.js",
+  "scripts": {
+    "test": "mocha BrokenLinksChecker.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mharoot/BrokenLinksChecker.git"
+  },
+  "keywords": [
+    "Broken",
+    "Links",
+    "Check",
+    "Node",
+    "Js"
+  ],
+  "author": "Michael Harootoonyan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mharoot/BrokenLinksChecker/issues"
+  },
+  "homepage": "https://github.com/mharoot/BrokenLinksChecker#readme",
+  "devDependencies": {
+    "fs": "0.0.1-security",
+    "mocha": "^6.2.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4",
+    "selenium-webdriver": "^4.0.0-alpha.4"
+  }
+}
