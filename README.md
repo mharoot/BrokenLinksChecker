@@ -25,3 +25,7 @@ homepageURL = 'http://google.com/';
     "selenium-webdriver": "^4.0.0-alpha.4"
   }
 ```
+
+### Usage
+It'll box a broken anchor link and scroll to it and take a picture
+![accusamus 1 1565895520](https://user-images.githubusercontent.com/24758613/63119394-e617fa80-bf54-11e9-9f01-498212825ecc.png)
