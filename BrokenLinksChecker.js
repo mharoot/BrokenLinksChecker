@@ -4,9 +4,9 @@ const fs = require('fs');
 // {Builder, By, Key, until} = require('selenium-webdriver');
 const request = require('request-promise');
 _VISITED = [];
-homepageURL = 'http://michael.caspianservices.com/avada/';
+homepageURL = 'http://google.com/';
 screenshotCounter = 1;
-// http://caspianclients.com/akopyan/
+
 
 
 (async function start() {
