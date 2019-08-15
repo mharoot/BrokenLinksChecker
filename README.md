@@ -18,6 +18,7 @@ homepageURL = 'http://google.com/';
 ### Dependencies
 ```js
   "devDependencies": {
+    "fs": "0.0.1-security",
     "mocha": "^6.2.0",
     "request": "^2.88.0",
     "request-promise": "^4.2.4",
