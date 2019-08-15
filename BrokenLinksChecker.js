@@ -1,7 +1,13 @@
-const {Builder, By, Key, until} = require('selenium-webdriver');
+const webdriver = require('selenium-webdriver');
+const fs = require('fs');
+  
+// {Builder, By, Key, until} = require('selenium-webdriver');
 const request = require('request-promise');
 _VISITED = [];
-homepageURL = 'http://google.com/';
+homepageURL = 'http://michael.caspianservices.com/avada/';
+screenshotCounter = 1;
+// http://caspianclients.com/akopyan/
+
 
 (async function start() {
   _VISITED[homepageURL] = true;
@@ -53,7 +59,16 @@ function isValidAnchor(text, href) {
 }
 
 async function getPageLinks(url) {
-  let driver = await new Builder().forBrowser('chrome').build();
+  let driver = await new webdriver.Builder().forBrowser('chrome').build();
+  webdriver.WebDriver.prototype.saveScreenshot = filename => {
+    return driver.takeScreenshot().then(data =>  {
+      fs.writeFile(`${__dirname}/screenshots/${filename}`, data.replace(/^data:image\/png;base64,/,''), 'base64', err => {
+        if(err) throw err
+      })
+    })
+  }
+
+
   try {
     console.log("SCANNING PAGE LINKS @ " + url);
     await driver.get(url);
@@ -63,9 +78,10 @@ async function getPageLinks(url) {
 
   
     for(let link of links) {
-        
+        var now = (Date.now()/1e3)|0;
+
         var text = await link.getText(),
-        href = await link.getAttribute("href");
+            href = await link.getAttribute("href");
 
         if ( isValidAnchor(text, href) && _VISITED[href] == null) {          
           try {
@@ -80,6 +96,9 @@ async function getPageLinks(url) {
               });
             } catch (err) {
               // We dont want to go to a broken page link to scan for links so we mark true
+              await driver.executeScript('arguments[0].scrollIntoView(); arguments[0].setAttribute("style", "border: solid 2px red");', link);
+              driver.saveScreenshot(`${text} ${screenshotCounter} ${now}.png`);
+              
               _VISITED[href] = true;
             }  
         } 
@@ -90,4 +109,3 @@ async function getPageLinks(url) {
     await driver.quit();
   }
 }
-
