@@ -4,7 +4,7 @@ const fs = require('fs');
 // {Builder, By, Key, until} = require('selenium-webdriver');
 const request = require('request-promise');
 _VISITED = [];
-homepageURL = 'http://google.com/';
+homepageURL = 'https://github.com/mharoot/BrokenLinksChecker';
 screenshotCounter = 1;
 
 
