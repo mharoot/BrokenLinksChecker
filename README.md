@@ -24,6 +24,8 @@ homepageURL = 'http://google.com/';
 
 3. Run it
 `npm test`
+`npm run test`
+`npm run blog`
 
 ### Dependencies
 ```js
