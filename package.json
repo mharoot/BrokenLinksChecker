@@ -4,7 +4,8 @@
   "description": "Checks all pages of a website for broken links",
   "main": "BrokenLinksChecker.js",
   "scripts": {
-    "test": "mocha BrokenLinksChecker.js"
+    "test": "mocha BrokenLinksChecker.js",
+    "test-blog":"mocha BlogImagesCollector.js"
   },
   "repository": {
     "type": "git",
