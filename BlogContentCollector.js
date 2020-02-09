@@ -61,33 +61,35 @@ async function getBlogContent(url, selector){
             request.head(uri, async function(err, res, body){
               // console.log('content-type:', res.headers['content-type']);
               // console.log('content-length:', res.headers['content-length']);
-              console.log(uri);
+            //   console.log(uri);
               await request(uri).pipe(fs.createWriteStream(filename).on('close', callback));
 
             });
           };
 
          var exploded = src.split('/');
+         var explodedUrl = url.split('/');
          var filename = exploded[exploded.length - 1];
-         var dir = filename.split('.')[0];
+         var dir = explodedUrl[explodedUrl.length - 2];
 
          // if its a valid image
          if ( (src.includes('.jpg') || src.includes('.png') || src.includes('.jpeg')) 
               && !src.includes("data:") ) {
             // create directory if it doesn't exist
-            if ( !fs.existsSync(dir) ) fs.mkdirSync(dir);
+            if ( !fs.existsSync('ScrapedContent/'+dir) ) fs.mkdirSync('ScrapedContent/'+dir);
 
             // download the image source into the dynamically created directory
-            download(src, dir+'/'+filename, function(){console.log(dir+'/'+filename)});
+            download(src, 'ScrapedContent/'+dir+'/'+filename, function(){console.log(dir+'/'+filename)});
             // let content = await driver.findElement({css: ".single .entry-content"});
             function processHTML(dir, innerHTML){
                 String.prototype.replaceAll = function(search, replacement) {
                     var target = this;
                   return target.replace(new RegExp(search, 'g'), replacement);
                 }
+                
                 // seems to have no effect I can paste as is plain text mode in wp bakery
                 // var newHtml =  innerHTML.replaceAll("</p>","</p> &nbsp;");
-                fs.writeFileSync(`${dir}/${dir}-entry-content.txt`, innerHTML, err => {
+                fs.writeFileSync(`ScrapedContent/${dir}/${dir}-entry-content.txt`, innerHTML, err => {
                     if(err) {console.log(err); return; throw err} else {console.log(innerHTML)}
                   });
             }
