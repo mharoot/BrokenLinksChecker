@@ -5,8 +5,8 @@
   "main": "BrokenLinksChecker.js",
   "scripts": {
     "test": "mocha BrokenLinksChecker.js",
-    "blog":"mocha BlogImagesCollector.js",
-    "blog2":"mocha BlogContentCollector.js"
+    "blog": "mocha BlogImagesCollector.js",
+    "blog2": "mocha BlogContentCollector.js"
   },
   "repository": {
     "type": "git",

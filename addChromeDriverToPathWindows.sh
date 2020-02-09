@@ -1,0 +1,1 @@
+set PATH=%PATH%;C:\Users\mh939470\Desktop\BlogCollector\chromedriver
