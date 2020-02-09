@@ -81,6 +81,12 @@ async function getBlogContent(url, selector){
             download(src, dir+'/'+filename, function(){console.log(dir+'/'+filename)});
             // let content = await driver.findElement({css: ".single .entry-content"});
             function processHTML(dir, innerHTML){
+                String.prototype.replaceAll = function(search, replacement) {
+                    var target = this;
+                  return target.replace(new RegExp(search, 'g'), replacement);
+                }
+                // seems to have no effect I can paste as is plain text mode in wp bakery
+                // var newHtml =  innerHTML.replaceAll("</p>","</p> &nbsp;");
                 fs.writeFileSync(`${dir}/${dir}-entry-content.txt`, innerHTML, err => {
                     if(err) {console.log(err); return; throw err} else {console.log(innerHTML)}
                   });
