@@ -81,25 +81,28 @@ async function getBlogContent(url, selector){
             // download the image source into the dynamically created directory
             download(src, 'ScrapedContent/'+dir+'/'+filename, function(){console.log(dir+'/'+filename)});
             // let content = await driver.findElement({css: ".single .entry-content"});
-            function processHTML(dir, innerHTML){
-                String.prototype.replaceAll = function(search, replacement) {
-                    var target = this;
-                  return target.replace(new RegExp(search, 'g'), replacement);
-                }
-                
+            function processHTML(dir, data){
+                // String.prototype.replaceAll = function(search, replacement) {
+                //     var target = this;
+                //   return target.replace(new RegExp(search, 'g'), replacement);
+                // }
                 // seems to have no effect I can paste as is plain text mode in wp bakery
                 // var newHtml =  innerHTML.replaceAll("</p>","</p> &nbsp;");
-                fs.writeFileSync(`ScrapedContent/${dir}/${dir}-entry-content.txt`, innerHTML, err => {
-                    if(err) {console.log(err); return; throw err} else {console.log(innerHTML)}
-                  });
+                
+                fs.writeFileSync(`ScrapedContent/${dir}/${dir}-entry-content.txt`, data["entry-content"], err => {
+                    if(err) {console.log(err); return; throw err} else {console.log(data["entry-content"])}
+                });
+                fs.writeFileSync(`ScrapedContent/${dir}/entry-title.txt`, data["entry-title"], err => {
+                  if(err) {console.log(err); return; throw err} else {console.log(data["entry-title"])}
+              });
             }
             await driver.executeScript(function() {
-                return document.querySelector('.single .entry-content').innerHTML;
-              }).then(function(innerHTML) {
+                return {"entry-content":document.querySelector('.single .entry-content').innerHTML,
+                        "entry-title":document.querySelector('.entry-title').innerHTML};
+              }).then(function(data) {
                 //   console.log(innerHTML);
                   console.log("THIS IS @@@@@@@ "+dir)
-                  processHTML(dir, innerHTML)
-                  
+                  processHTML(dir, data);
                
               });
             
