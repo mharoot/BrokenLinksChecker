@@ -10,7 +10,7 @@ Version 79.0.3945.130 (Official Build) (64-bit)
 ```
 I am using chromedriver Version 79.0.3945.36 in the root directory where the package.json file sits.   This is completely fine when I tested on my mac os.  It supports any of the version 79's.  Doing it on windows is the same process.
 
-- Next run the addChromeDriveToPath.sh script, adjust the file path as neccesary because myne is  `/Users/michaelknight/Desktop/broken-links-checker/chromedriver`
+- Next run the `./addChromeDriverToPathWindows.sh` script, adjust the file path as neccesary because myne is  `/Users/michaelknight/Desktop/broken-links-checker/chromedriver`
 
 1. Give it a homepage url
 ```js

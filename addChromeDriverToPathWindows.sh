@@ -1,1 +1,1 @@
-set PATH=%PATH%;C:\Users\mh939470\Desktop\BlogCollector\chromedriver
+set PATH=%PATH%;C:\Users\mh939470\Documents\Github\mharoot\BrokenLinksChecker
